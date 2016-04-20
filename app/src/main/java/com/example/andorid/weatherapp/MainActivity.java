@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 //Luigi : I am here
+//Luigi : I am here again
 public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> listAdapter;
     String city = "Manila";
