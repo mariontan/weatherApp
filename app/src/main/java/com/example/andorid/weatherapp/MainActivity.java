@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+//Luigi : I am here
 public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> listAdapter;
     String city = "Manila";
