@@ -26,10 +26,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    List<String> weekForecast = new ArrayList<String>();
     private ArrayAdapter<String> listAdapter;
     String city = "Manila";
     @Override
@@ -39,6 +39,18 @@ public class MainActivity extends AppCompatActivity {
         listAdapter.notifyDataSetChanged();
 
     }
+    @Override
+    public void onStop(){
+        WeatherApplication weatherApplication = new WeatherApplication();
+        String forecast="";
+        for(String forecst:weekForecast){
+            forecast+=forecst;
+            forecast+="\n";
+        }
+        weatherApplication.saveWeatherData(forecast);
+        super.onStop();
+
+    }
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView cityName = (TextView) findViewById(R.id.text_city);
         cityName.setText(city);
-        String[] arrayForecast = {
-                "Today - Sunny - 88/63",
-                "Tomorrow- foggy - 70/40",
-                "Weds - Cloudy- 80/90"
-        };
-        List<String> weekForecast = new ArrayList<String>(Arrays.asList(arrayForecast));
+
         listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, weekForecast);
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(listAdapter);
@@ -220,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     /***http://openweathermap.org/current for seeing other data     http://openweathermap.org/weather-data#16days***/
+                    //to be able to return new cities
                     Uri builtUri = Uri.parse(getString(R.string.forecast_base_url)).buildUpon()
                             .appendQueryParameter(getString(R.string.query_param), params[0])
                             .appendQueryParameter(getString(R.string.format_param), getString(R.string.format_default))
@@ -232,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
                     // Possible parameters are available at OWM's forecast API page, at
                     // http://openweathermap.org/API#forecast
                     //URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7&APPID=a43ecc59eb6dc14d800bd5f635923bb9");
+
                     URL url = new URL(builtUri.toString());
                     // Create the request to OpenWeatherMap, and open the connection
                     urlConnection = (HttpURLConnection) url.openConnection();
@@ -262,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     forecastJsonStr = buffer.toString();
                     Log.v(LOG_TAG, "Forecast JSON String: " + forecastJsonStr);
-                    Log.v(LOG_TAG, "Built URL " + builtUri.toString());
                 } catch (IOException e) {
                     Log.e(LOG_TAG, "Error ", e);
                     // If the code didn't successfully get the weather data, there's no point in attempting
