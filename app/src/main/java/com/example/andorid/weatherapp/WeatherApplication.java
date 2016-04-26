@@ -11,6 +11,10 @@ import java.io.BufferedInputStream;
 public class WeatherApplication extends Application {
     private String cityName = "Manila";
 
+    public WeatherApplication(){
+
+    }
+
     public String getCityName() {
         return cityName;
     }
@@ -19,9 +23,6 @@ public class WeatherApplication extends Application {
         this.cityName = cityName;
     }
 
-    public WeatherApplication(){
-
-    }
     public void saveWeatherData(String weatherData, String filename){
         if(FileIO.isStorageReady()){
             Log.i("INFO","saving weather");

@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             newForecast+=forecst;
             newForecast+="\n";
         }
-        weatherApplication.saveWeatherData(newForecast,weatherApplication.getCityName());
+        weatherApplication.saveWeatherData(newForecast, weatherApplication.getCityName());
         super.onStop();
     }
    @Override
@@ -103,16 +103,14 @@ public class MainActivity extends AppCompatActivity {
     public void searchCity(View view){
         TextView cityName = (TextView) findViewById(R.id.text_city);
         EditText searchCity = (EditText) findViewById(R.id.edit_search);
-        //city = searchCity.getText().toString();
         weatherApplication.setCityName(searchCity.getText().toString());
         searchCity.setText("");
         cityName.setText(weatherApplication.getCityName());
         downloadWeather();
     }
-    public void useLocation(){
-
-
-    }
+   public void currentLocationDetails(View View){
+       
+   }
 
     private void downloadWeather(){
         AsyncTask<String,Void, String[]> dlTsk = new AsyncTask<String, Void, String[]>() {
@@ -214,10 +212,6 @@ public class MainActivity extends AppCompatActivity {
 
                     // Displays the humidity of the day
                     humidity = dayForecast.getString(OWN_HUMIDITY);
-
-                    /*SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    String unitType = prefs.getString(getString(R.string.pref_units_key),
-                            getString(R.string.pref_metric));*/
 
                     highAndLow = formatTemps(high, low, dayTemp, getString(R.string.unit_default));
                     //Where the data is assembled
