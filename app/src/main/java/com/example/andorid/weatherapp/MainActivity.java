@@ -31,7 +31,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     List<String> weekForecast = new ArrayList<String>();
     private ArrayAdapter<String> listAdapter;
-    String city = "Manila";
+    WeatherApplication weatherApplication = new WeatherApplication();
+    //String city = "Manila";
     @Override
     public void onStart(){
         super.onStart();
@@ -39,25 +40,38 @@ public class MainActivity extends AppCompatActivity {
         listAdapter.notifyDataSetChanged();
 
     }
+    //save data when app stops
     @Override
     public void onStop(){
         WeatherApplication weatherApplication = new WeatherApplication();
-        String forecast="";
-        for(String forecst:weekForecast){
-            forecast+=forecst;
-            forecast+="\n";
-        }
-        weatherApplication.saveWeatherData(forecast);
-        super.onStop();
+        //saving weather data from the past days
+        String oldForecast=weatherApplication.getWeatherData();
+        String newForecast = "";
+        //storing of old data
+        String oldData[] =oldForecast.split("\n");
 
+        //checking if new data is in old data
+        for (String oldFrcst : oldData) {
+            if (weekForecast.contains(oldFrcst)==false) {
+                Log.i("INFO", "Found message: " + oldFrcst);
+                weekForecast.add(oldFrcst);
+            }
+        }
+
+        for(String forecst:weekForecast){
+            newForecast+=forecst;
+            newForecast+="\n";
+        }
+
+        weatherApplication.saveWeatherData(newForecast);
+        super.onStop();
     }
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         TextView cityName = (TextView) findViewById(R.id.text_city);
-        cityName.setText(city);
+        cityName.setText(weatherApplication.getCityName());
 
         listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, weekForecast);
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -91,10 +105,15 @@ public class MainActivity extends AppCompatActivity {
     public void searchCity(View view){
         TextView cityName = (TextView) findViewById(R.id.text_city);
         EditText searchCity = (EditText) findViewById(R.id.edit_search);
-        city = searchCity.getText().toString();
+        //city = searchCity.getText().toString();
+        weatherApplication.setCityName(searchCity.getText().toString());
         searchCity.setText("");
-        cityName.setText(city);
+        cityName.setText(weatherApplication.getCityName());
         downloadWeather();
+    }
+    public void useLocation(){
+
+
     }
 
     private void downloadWeather(){
@@ -292,6 +311,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return null;
             }
+            //onPostExecute knows already which String[] result we are taking about 
             @Override
             protected void onPostExecute(String[] result) {
                 if(result != null){
@@ -299,18 +319,22 @@ public class MainActivity extends AppCompatActivity {
                     for(String dayForecastStr : result){
                         listAdapter.add(dayForecastStr);
                     }
+
                     //set the current temperature for the day
                     TextView textHigh = (TextView) findViewById(R.id.text_high);
                     TextView textLow = (TextView) findViewById(R.id.text_low);
                     TextView textCur = (TextView) findViewById(R.id.text_temp);
 
                     //listAdapter.getItem(0)will have the values for today
-                    textHigh.setText("High:"+listAdapter.getItem(0).substring(listAdapter.getItem(0).indexOf("- ")+1,listAdapter.getItem(0).lastIndexOf("/")));
-                    textLow.setText("Low:"+listAdapter.getItem(0).substring(listAdapter.getItem(0).lastIndexOf("/")+1,listAdapter.getItem(0).lastIndexOf("(")));
-                    textCur.setText(listAdapter.getItem(0).substring(listAdapter.getItem(0).lastIndexOf("(")+1, listAdapter.getItem(0).lastIndexOf(")")));
+                    textHigh.setText("High:"+listAdapter.getItem(0).substring(listAdapter.getItem(0).indexOf("- ")+
+                                        1,listAdapter.getItem(0).lastIndexOf("/")));
+                    textLow.setText("Low:"+listAdapter.getItem(0).substring(listAdapter.getItem(0).lastIndexOf("/")+
+                                        1,listAdapter.getItem(0).lastIndexOf("(")));
+                    textCur.setText(listAdapter.getItem(0).substring(listAdapter.getItem(0).lastIndexOf("(")+
+                                        1, listAdapter.getItem(0).lastIndexOf(")")));
                 }
             }
         };
-        dlTsk.execute(city);
+        dlTsk.execute(weatherApplication.getCityName());
     }
 }
