@@ -9,7 +9,7 @@ import java.io.BufferedInputStream;
  * Created by S410P on 4/20/2016.
  */
 public class WeatherApplication extends Application {
-    private String cityName = "China";
+    private String cityName = "Manila";
 
     public String getCityName() {
         return cityName;
@@ -22,18 +22,18 @@ public class WeatherApplication extends Application {
     public WeatherApplication(){
 
     }
-    public void saveWeatherData(String weatherData){
+    public void saveWeatherData(String weatherData, String filename){
         if(FileIO.isStorageReady()){
             Log.i("INFO","saving weather");
-            FileIO.write("Weather",weatherData.getBytes());
-            Log.i("INFO", "saveing complete");
+            FileIO.write(filename,weatherData.getBytes());
+            Log.i("INFO", "saving complete");
         }
     }
-    public String getWeatherData(){
+    public String getWeatherData(String filename){
         try{
             if(FileIO.isStorageReady()){
                 Log.i("INFO","Reading file...");
-                BufferedInputStream is = new BufferedInputStream(FileIO.getFileInputStream("Weather"));
+                BufferedInputStream is = new BufferedInputStream(FileIO.getFileInputStream(filename));
                 String dataStr = "";
                 int cInp = 0;
                 while(is.available()>0){

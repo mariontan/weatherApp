@@ -43,9 +43,8 @@ public class MainActivity extends AppCompatActivity {
     //save data when app stops
     @Override
     public void onStop(){
-        WeatherApplication weatherApplication = new WeatherApplication();
         //saving weather data from the past days
-        String oldForecast=weatherApplication.getWeatherData();
+        String oldForecast=weatherApplication.getWeatherData(weatherApplication.getCityName());
         String newForecast = "";
         //storing of old data
         String oldData[] =oldForecast.split("\n");
@@ -62,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
             newForecast+=forecst;
             newForecast+="\n";
         }
-
-        weatherApplication.saveWeatherData(newForecast);
+        weatherApplication.saveWeatherData(newForecast,weatherApplication.getCityName());
         super.onStop();
     }
    @Override
