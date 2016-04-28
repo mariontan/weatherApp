@@ -41,6 +41,7 @@ public class ListDisplay extends AppCompatActivity {
         txvHumid.setText("Humidity: " + humidity);
 
         //add suggestions
+        
     }
 
     @Override

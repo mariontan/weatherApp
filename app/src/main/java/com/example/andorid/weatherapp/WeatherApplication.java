@@ -22,21 +22,19 @@ public class WeatherApplication extends Application {
         this.cityName = cityName;
     }
 
-    public void saveLastCity(){
 
-    }
     public void restoreData(){
 
     }
 
-    public void saveWeatherData(String weatherData, String filename){
+    public void saveData(String weatherData, String filename){
         if(FileIO.isStorageReady()){
             Log.i("INFO","saving weather");
             FileIO.write(filename,weatherData.getBytes());
             Log.i("INFO", "saving complete");
         }
     }
-    public String getWeatherData(String filename){
+    public String getData(String filename){
         try{
             if(FileIO.isStorageReady()){
                 Log.i("INFO","Reading file...");

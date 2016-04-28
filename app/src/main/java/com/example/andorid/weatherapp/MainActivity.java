@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
+        //gets the last city searched and loads it back on start
+        weatherApplication.setCityName(weatherApplication.getData("lastcity"));
+        TextView cityName = (TextView) findViewById(R.id.text_city);
+        cityName.setText(weatherApplication.getCityName());
         downloadWeather();
         listAdapter.notifyDataSetChanged();
 
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop(){
         //saving weather data from the past days
-        String oldForecast=weatherApplication.getWeatherData(weatherApplication.getCityName());
+        String oldForecast=weatherApplication.getData(weatherApplication.getCityName());
         String newForecast = "";
         //storing of old data
         String oldData[] =oldForecast.split("\n");
@@ -62,7 +66,10 @@ public class MainActivity extends AppCompatActivity {
             newForecast+=forecst;
             newForecast+="\n";
         }
-        weatherApplication.saveWeatherData(newForecast, weatherApplication.getCityName());
+        //save weather data
+        weatherApplication.saveData(newForecast, weatherApplication.getCityName());
+        //save city name
+        weatherApplication.saveData(weatherApplication.getCityName(), "lastcity");
         super.onStop();
     }
    @Override

@@ -25,6 +25,7 @@ public class FileIO {
         FileOutputStream fileOut = null;
 
         try{
+            //make directory and file if it does not exist yet
             if(!fOutputDir.exists()){
                 fOutputDir.mkdirs();
             }

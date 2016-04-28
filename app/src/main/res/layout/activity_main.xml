@@ -7,7 +7,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:baselineAligned="false"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#554949">
 
 
     <TextView
@@ -18,8 +19,19 @@
         android:textSize="90sp"
         android:id="@+id/text_temp"
         android:layout_below="@+id/text_city"
-        android:layout_centerHorizontal="true" />
-
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_high"
+        android:src="@drawable/high"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/text_high"
+        android:layout_alignRight="@+id/text_high"
+        android:layout_alignEnd="@+id/text_high"
+        android:layout_alignTop="@+id/text_temp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,8 +40,16 @@
         android:id="@+id/text_high"
         android:layout_below="@+id/text_temp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_low"
+        android:src="@drawable/low"
+        android:layout_alignBottom="@+id/text_low"
+        android:layout_toRightOf="@+id/text_degc"
+        android:layout_below="@+id/edit_search" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +58,8 @@
         android:id="@+id/text_low"
         android:layout_alignTop="@+id/text_high"
         android:layout_alignRight="@+id/listView"
-        android:layout_alignEnd="@+id/listView" />
+        android:layout_alignEnd="@+id/listView"
+        android:textColor="#ffffff" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -46,7 +67,7 @@
         android:id="@+id/listView"
         android:layout_below="@+id/text_low"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="101dp" />
+        android:layout_marginTop="101dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,7 +77,8 @@
         android:id="@+id/text_city"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp" />
+        android:layout_marginTop="64dp"
+        android:textColor="#ffffff" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -64,20 +86,43 @@
         android:id="@+id/edit_search"
         android:text="Manila"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-    <Button
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff" />
+
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="search"
-        android:layout_toRightOf="@id/edit_search"
+        android:src="@android:drawable/ic_menu_send"
+        android:id="@+id/btn_search"
+        android:layout_weight="1"
+        android:background="#554949"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/edit_search"
+        android:layout_toEndOf="@+id/edit_search"
         android:onClick="searchCity"/>
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Location"
-        android:onClick="currentLocationDetails"
         android:id="@+id/current_button"
-        android:layout_below="@+id/text_high"
-        android:layout_centerHorizontal="true" />
+        android:onClick="currentLocationDetails"
+        android:layout_centerHorizontal="true"
+        android:padding="0dp"
+        android:src="@drawable/location"
+        android:background="#554949"
+        android:layout_below="@+id/text_temp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="°c"
+        android:id="@+id/text_degc"
+        android:layout_toRightOf="@+id/text_temp"
+        android:layout_alignTop="@+id/text_temp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="40sp"
+        android:textColor="#ffffff"
+        android:layout_toLeftOf="@+id/text_low"
+        android:layout_toStartOf="@+id/text_low" />
+
 </RelativeLayout>
