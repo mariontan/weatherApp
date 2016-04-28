@@ -14,5 +14,6 @@
     <string name="days_default">7</string>
     <string name="appid_default">a43ecc59eb6dc14d800bd5f635923bb9</string>
     <string name="title_activity_current_location">CurrentLocation</string>
+    <string name="title_activity_list_display">ListDisplay</string>
 
 </resources>

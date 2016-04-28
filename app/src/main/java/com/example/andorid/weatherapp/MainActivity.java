@@ -1,5 +1,6 @@
 package com.example.andorid.weatherapp;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -32,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     List<String> weekForecast = new ArrayList<String>();
     private ArrayAdapter<String> listAdapter;
     WeatherApplication weatherApplication = new WeatherApplication();
-    //String city = "Manila";
     @Override
     public void onStart(){
         super.onStart();
@@ -75,6 +76,18 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(listAdapter);
         listAdapter.notifyDataSetChanged();
+        listView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String frcst = weekForecast.get(position);
+                        Intent listDisplay = new Intent(MainActivity.this, ListDisplay.class)
+                                .putExtra(Intent.EXTRA_TEXT, frcst);
+                        startActivity(listDisplay);
+                    }
+                }
+        );
+
 
     }
 
@@ -109,7 +122,8 @@ public class MainActivity extends AppCompatActivity {
         downloadWeather();
     }
    public void currentLocationDetails(View View){
-       
+       //Intent intent = new Intent(MainActivity.this,CurrentLocation.class);
+       //startActivity(intent);
    }
 
     private void downloadWeather(){

@@ -26,6 +26,10 @@
             android:name=".CurrentLocation"
             android:label="@string/title_activity_current_location" >
         </activity>
+        <activity
+            android:name=".ListDisplay"
+            android:label="@string/title_activity_list_display" >
+        </activity>
     </application>
 
 </manifest>

@@ -78,7 +78,6 @@
         android:text="Current Location"
         android:onClick="currentLocationDetails"
         android:id="@+id/current_button"
-        android:layout_alignTop="@+id/edit_search"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/text_high"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

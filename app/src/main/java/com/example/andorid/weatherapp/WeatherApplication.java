@@ -18,9 +18,15 @@ public class WeatherApplication extends Application {
     public String getCityName() {
         return cityName;
     }
-
     public void setCityName(String cityName) {
         this.cityName = cityName;
+    }
+
+    public void saveLastCity(){
+
+    }
+    public void restoreData(){
+
     }
 
     public void saveWeatherData(String weatherData, String filename){
