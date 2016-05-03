@@ -129,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
         downloadWeather();
     }
    public void currentLocationDetails(View View){
-       //Intent intent = new Intent(MainActivity.this,CurrentLocation.class);
-       //startActivity(intent);
+       Intent intent = new Intent(MainActivity.this,CurrentLocation.class);
+       startActivity(intent);
    }
 
     private void downloadWeather(){

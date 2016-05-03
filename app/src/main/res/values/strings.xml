@@ -1,14 +1,16 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="forecast_base_url">http://api.openweathermap.org/data/2.5/forecast/daily?</string>
+    <string name="forecast_location_url">http://api.openweathermap.org/data/2.5/station/find?</string>
     <string name="query_param">q</string>
     <string name="format_param">mode</string>
     <string name="units_param">units</string>
     <string name="days_param">cnt</string>
     <string name="appid_param">APPID</string>
+    <string name="latitude">lat</string>
+    <string name="longhitude">lon</string>
     <string name="format_default">json</string>
     <string name="unit_default">metric</string>
     <string name="days_default">7</string>

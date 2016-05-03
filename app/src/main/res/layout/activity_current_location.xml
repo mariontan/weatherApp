@@ -18,7 +18,16 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/Lon"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/Lat"
+        android:layout_alignLeft="@+id/Lat"
+        android:layout_alignStart="@+id/Lat" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherList"
+        android:layout_below="@+id/Lon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp" />
 
 </RelativeLayout>

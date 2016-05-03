@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/edit_search"
-        android:text="Manila"
+        android:text=""
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff" />
@@ -106,11 +106,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/current_button"
         android:onClick="currentLocationDetails"
-        android:layout_centerHorizontal="true"
         android:padding="0dp"
         android:src="@drawable/location"
         android:background="#554949"
-        android:layout_below="@+id/text_temp" />
+        android:layout_below="@+id/text_temp"
+        android:layout_alignRight="@+id/btn_search"
+        android:layout_alignEnd="@+id/btn_search" />
 
     <TextView
         android:layout_width="wrap_content"
