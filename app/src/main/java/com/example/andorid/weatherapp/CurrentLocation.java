@@ -80,8 +80,8 @@ public class CurrentLocation extends AppCompatActivity {
                 lon = String.valueOf(location.getLongitude());
                 TextView txvLat = (TextView) findViewById(R.id.Lat);
                 TextView txvLon = (TextView) findViewById(R.id.Lon);
-                txvLat.setText(lat);
-                txvLon.setText(lon);
+                txvLat.setText("Latitude: "+lat);
+                txvLon.setText("Longitude: "+lon);
                 downloadCurWeather(lat, lon);
             }
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -164,7 +164,7 @@ public class CurrentLocation extends AppCompatActivity {
                     temp = mainObj.getDouble(OWM_TEMPERATURE);
                     humidity = mainObj.getDouble(OWM_HUMIDITY);
                     pressure = mainObj.getDouble(OWM_PRESSURE);
-                    resultStrs[i]= "sation name: "+ name+" "+ formatTemps(temp-273.15,"")+" "+humidity+"%"+" "+pressure;
+                    resultStrs[i]= "station name: "+ name+" "+ formatTemps(temp-273.15,"")+" "+humidity+"%"+" "+pressure;
                 }
                 for (String s : resultStrs) {
                     Log.v(LOG_TAG, "Forecast entry: " + s);
